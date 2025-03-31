@@ -110,7 +110,7 @@ Partial Public NotInheritable Class MainForm
             Return
         End If
 
-        Dim export As RenderingExtensionWrapper = If(RadioButton1.Checked, RadioButton1, RadioButton2)
+        Dim export = CType(If(RadioButton1.Checked, RadioButton1, RadioButton2), RenderingExtensionWrapper)
         If ((RadioButton1.Checked Or RadioButton2.Checked) AndAlso Not IsNothing(reports.SelectedItem)) Then
             propertyGrid.SelectedObject = export.GetSupportedSettings(If(Not IsNothing(reports.SelectedItem), IsFpl(CType(reports.SelectedItem, String)), False))
         End If
@@ -125,8 +125,8 @@ Partial Public NotInheritable Class MainForm
 
     Private Sub RenderPdf(streams As StreamProvider, postAction As Action(Of StreamProvider))
         Dim reportPath = Path.Combine(ReportsPath, CType(reports.SelectedItem, String))
-        Dim pdfSettings As ISettings = CType(propertyGrid.SelectedObject, ISettings)
-        Dim export As RenderingExtensionWrapper = If(RadioButton1.Checked, RadioButton1, RadioButton2)
+        Dim pdfSettings = CType(propertyGrid.SelectedObject, ISettings)
+        Dim export = CType(If(RadioButton1.Checked, RadioButton1, RadioButton2), RenderingExtensionWrapper)
 
         Cursor = Cursors.WaitCursor
         Enabled = False
