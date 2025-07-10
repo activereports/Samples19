@@ -61,6 +61,7 @@ Partial Class StartForm
         Me.arvMain.CurrentPage = 0
         Me.arvMain.Name = "arvMain"
         Me.arvMain.PreviewPages = 0
+        Me.arvMain.Dock = DockStyle.Fill
         '
         '
         '

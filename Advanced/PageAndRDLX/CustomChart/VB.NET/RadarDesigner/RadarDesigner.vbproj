@@ -17,6 +17,7 @@
     <PlatformName>windows</PlatformName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>MSB3277</NoWarn>
     <UseWpf>true</UseWpf>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -54,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MESCIUS.ActiveReports.Design.Win">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encoding.CodePages">
       <Version>6.0.0</Version>

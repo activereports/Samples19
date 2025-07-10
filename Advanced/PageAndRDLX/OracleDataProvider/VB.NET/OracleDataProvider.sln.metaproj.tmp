@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Target Name="GetSolutionConfigurationContents" />
+  <Target Name="Publish" />
+  <Target Name="ValidateProjects" />
+  <Target Name="Clean" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="ValidateSolutionConfiguration" />
+  <Target Name="ValidateToolsVersions" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <PropertyGroup Condition="'$(ImportDirectorySolutionProps)' != 'false' and '$(DirectorySolutionPropsPath)' == ''">
+    <_DirectorySolutionPropsFile Condition="'$(_DirectorySolutionPropsFile)' == ''">Directory.Solution.props</_DirectorySolutionPropsFile>
+    <_DirectorySolutionPropsBasePath Condition="'$(_DirectorySolutionPropsBasePath)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), '$(_DirectorySolutionPropsFile)'))</_DirectorySolutionPropsBasePath>
+    <DirectorySolutionPropsPath Condition="'$(_DirectorySolutionPropsBasePath)' != '' and '$(_DirectorySolutionPropsFile)' != ''">$([System.IO.Path]::Combine('$(_DirectorySolutionPropsBasePath)', '$(_DirectorySolutionPropsFile)'))</DirectorySolutionPropsPath>
+  </PropertyGroup>
+  <Import Project="$(DirectorySolutionPropsPath)" Condition="'$(ImportDirectorySolutionProps)' != 'false' and exists('$(DirectorySolutionPropsPath)')" />
+  <Import Project="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\before.OracleDataProvider.sln.targets" Condition="exists('F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\before.OracleDataProvider.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Mixed Platforms</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>OracleDataProvider.sln</SolutionFileName>
+    <SolutionName>OracleDataProvider</SolutionName>
+    <SolutionPath>F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\OracleDataProvider.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and !('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0' or '$(MSBuildToolsVersion)' == '2.0')">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Debug|Mixed Platforms">
+      <Configuration>Debug</Configuration>
+      <Platform>Mixed Platforms</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Designer-Debug|AnyCPU">
+      <Configuration>Designer-Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Designer-Debug|Mixed Platforms">
+      <Configuration>Designer-Debug</Configuration>
+      <Platform>Mixed Platforms</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Designer-Release|AnyCPU">
+      <Configuration>Designer-Release</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Designer-Release|Mixed Platforms">
+      <Configuration>Designer-Release</Configuration>
+      <Platform>Mixed Platforms</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Mixed Platforms">
+      <Configuration>Release</Configuration>
+      <Platform>Mixed Platforms</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Designer-Debug') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Designer-Debug') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Designer-Release') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Designer-Release') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{54F7013F-841F-467F-B871-3D831C73CBE8}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <PropertyGroup Condition="'$(ImportDirectorySolutionTargets)' != 'false' and '$(DirectorySolutionTargetsPath)' == ''">
+    <_DirectorySolutionTargetsFile Condition="'$(_DirectorySolutionTargetsFile)' == ''">Directory.Solution.targets</_DirectorySolutionTargetsFile>
+    <_DirectorySolutionTargetsBasePath Condition="'$(_DirectorySolutionTargetsBasePath)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), '$(_DirectorySolutionTargetsFile)'))</_DirectorySolutionTargetsBasePath>
+    <DirectorySolutionTargetsPath Condition="'$(_DirectorySolutionTargetsBasePath)' != '' and '$(_DirectorySolutionTargetsFile)' != ''">$([System.IO.Path]::Combine('$(_DirectorySolutionTargetsBasePath)', '$(_DirectorySolutionTargetsFile)'))</DirectorySolutionTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(DirectorySolutionTargetsPath)" Condition="'$(ImportDirectorySolutionTargets)' != 'false' and exists('$(DirectorySolutionTargetsPath)')" />
+  <Import Project="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\after.OracleDataProvider.sln.targets" Condition="exists('F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\OracleDataProvider\VB.NET\after.OracleDataProvider.sln.targets')" />
+</Project>

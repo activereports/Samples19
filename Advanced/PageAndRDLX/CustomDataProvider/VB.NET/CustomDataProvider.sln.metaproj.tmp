@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Target Name="GetSolutionConfigurationContents" />
+  <Target Name="Publish" />
+  <Target Name="ValidateProjects" />
+  <Target Name="Clean" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="ValidateSolutionConfiguration" />
+  <Target Name="ValidateToolsVersions" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <PropertyGroup Condition="'$(ImportDirectorySolutionProps)' != 'false' and '$(DirectorySolutionPropsPath)' == ''">
+    <_DirectorySolutionPropsFile Condition="'$(_DirectorySolutionPropsFile)' == ''">Directory.Solution.props</_DirectorySolutionPropsFile>
+    <_DirectorySolutionPropsBasePath Condition="'$(_DirectorySolutionPropsBasePath)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), '$(_DirectorySolutionPropsFile)'))</_DirectorySolutionPropsBasePath>
+    <DirectorySolutionPropsPath Condition="'$(_DirectorySolutionPropsBasePath)' != '' and '$(_DirectorySolutionPropsFile)' != ''">$([System.IO.Path]::Combine('$(_DirectorySolutionPropsBasePath)', '$(_DirectorySolutionPropsFile)'))</DirectorySolutionPropsPath>
+  </PropertyGroup>
+  <Import Project="$(DirectorySolutionPropsPath)" Condition="'$(ImportDirectorySolutionProps)' != 'false' and exists('$(DirectorySolutionPropsPath)')" />
+  <Import Project="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\before.CustomDataProvider.sln.targets" Condition="exists('F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\before.CustomDataProvider.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>CustomDataProvider.sln</SolutionFileName>
+    <SolutionName>CustomDataProvider</SolutionName>
+    <SolutionPath>F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProvider.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and !('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0' or '$(MSBuildToolsVersion)' == '2.0')">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{82592E67-1B68-48A3-82DA-3C22E21F4927}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{7D70C86A-1CB5-4F4B-B403-AC4FF60532CD}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProviderUI\CustomDataProviderUI.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EBB36950-4C3B-4284-BCE8-4AA0EF6FADEF}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProvider\CustomDataProvider.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3D6C6246-3873-4FD5-BAE0-77124E95B4FE}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestViewer\TestViewer.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{82592E67-1B68-48A3-82DA-3C22E21F4927}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{7D70C86A-1CB5-4F4B-B403-AC4FF60532CD}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProviderUI\CustomDataProviderUI.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EBB36950-4C3B-4284-BCE8-4AA0EF6FADEF}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProvider\CustomDataProvider.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3D6C6246-3873-4FD5-BAE0-77124E95B4FE}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestViewer\TestViewer.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{82592E67-1B68-48A3-82DA-3C22E21F4927}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{7D70C86A-1CB5-4F4B-B403-AC4FF60532CD}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProviderUI\CustomDataProviderUI.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EBB36950-4C3B-4284-BCE8-4AA0EF6FADEF}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProvider\CustomDataProvider.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3D6C6246-3873-4FD5-BAE0-77124E95B4FE}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestViewer\TestViewer.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'AnyCPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{82592E67-1B68-48A3-82DA-3C22E21F4927}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestDesignerPro\TestDesignerPro.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{7D70C86A-1CB5-4F4B-B403-AC4FF60532CD}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProviderUI\CustomDataProviderUI.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{EBB36950-4C3B-4284-BCE8-4AA0EF6FADEF}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\CustomDataProvider\CustomDataProvider.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3D6C6246-3873-4FD5-BAE0-77124E95B4FE}" AbsolutePath="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\TestViewer\TestViewer.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <PropertyGroup Condition="'$(ImportDirectorySolutionTargets)' != 'false' and '$(DirectorySolutionTargetsPath)' == ''">
+    <_DirectorySolutionTargetsFile Condition="'$(_DirectorySolutionTargetsFile)' == ''">Directory.Solution.targets</_DirectorySolutionTargetsFile>
+    <_DirectorySolutionTargetsBasePath Condition="'$(_DirectorySolutionTargetsBasePath)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), '$(_DirectorySolutionTargetsFile)'))</_DirectorySolutionTargetsBasePath>
+    <DirectorySolutionTargetsPath Condition="'$(_DirectorySolutionTargetsBasePath)' != '' and '$(_DirectorySolutionTargetsFile)' != ''">$([System.IO.Path]::Combine('$(_DirectorySolutionTargetsBasePath)', '$(_DirectorySolutionTargetsFile)'))</DirectorySolutionTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(DirectorySolutionTargetsPath)" Condition="'$(ImportDirectorySolutionTargets)' != 'false' and exists('$(DirectorySolutionTargetsPath)')" />
+  <Import Project="F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\after.CustomDataProvider.sln.targets" Condition="exists('F:\BuildAgent\work\68026845a9b74bde\UnifiedSamples\Advanced\PageAndRDLX\CustomDataProvider\VB.NET\after.CustomDataProvider.sln.targets')" />
+</Project>

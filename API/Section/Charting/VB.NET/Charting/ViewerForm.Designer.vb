@@ -111,7 +111,7 @@ Private components As System.ComponentModel.IContainer
 		If Environment.Version.Major < 6 Then
 			Dim currentDpiX As Single = Me.CreateGraphics().DpiX
 			Dim scalingFactor As Single = currentDpiX / 96
-			Me.splitContainer.SplitterDistance = (scalingFactor * Me.splitContainer.SplitterDistance)
+			Me.splitContainer.SplitterDistance = CInt((scalingFactor * Me.splitContainer.SplitterDistance))
 		End If
 		Me.splitContainer.Panel1.ResumeLayout(False)
 		Me.splitContainer.Panel1.PerformLayout()

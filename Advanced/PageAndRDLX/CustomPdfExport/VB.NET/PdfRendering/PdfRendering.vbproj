@@ -21,7 +21,7 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <MyType>Windows</MyType>
-    <NoWarn>NU1701</NoWarn>
+    <NoWarn>NU1701;MSB3277</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -60,7 +60,7 @@
       <Version>3.4.4</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encoding.CodePages">
       <Version>6.0.0</Version>

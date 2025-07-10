@@ -6,8 +6,8 @@ Imports GrapeCity.ActiveReports
 Public Class MainForm
 
     Dim _resource As New ResourceManager(Me.GetType)
-    ReadOnly _settingForNoHeaderFixed = _resource.GetString("NoHeaderFixed")
-    ReadOnly _settingForHeaderExistsFixed = _resource.GetString("HeaderExistsFixed")
+    ReadOnly _settingForNoHeaderFixed As String = _resource.GetString("NoHeaderFixed")
+    ReadOnly _settingForHeaderExistsFixed As String = _resource.GetString("HeaderExistsFixed")
 
     Sub New()
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)

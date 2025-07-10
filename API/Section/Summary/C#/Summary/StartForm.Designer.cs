@@ -31,13 +31,14 @@ private System.ComponentModel.Container components = null;
 			this.arvMain.CurrentPage = 0;
 			this.arvMain.Name = "arvMain";
 			this.arvMain.PreviewPages = 0;
-			// 
-			// 
-			// 
-			// 
-			// 
-			// 
-			this.arvMain.Sidebar.ParametersPanel.ContextMenu = null;
+			this.arvMain.Dock = DockStyle.Fill;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.arvMain.Sidebar.ParametersPanel.ContextMenu = null;
 			this.arvMain.Sidebar.ParametersPanel.Text = "Parameters";
 			this.arvMain.Sidebar.ParametersPanel.Width = 200;
 			// 

@@ -13,6 +13,8 @@ Imports GrapeCity.ActiveReports.Layout
 Imports GrapeCity.ActiveReports.Rendering.RenderingTree.Tools
 Imports GrapeCity.ActiveReports
 
+Imports CustomData = GrapeCity.ActiveReports.Extensibility.Rendering.CustomData
+
 Public NotInheritable Class RadarChart
     Implements IDataRegion
     Implements ICustomReportItem
@@ -26,9 +28,9 @@ Public NotInheritable Class RadarChart
     Private NotInheritable Class ImageRenderer
         Implements IImageRenderer
         Function Render(layoutArea As ILayoutArea, mimeType As String, dpi As SizeF) As ImageInfo Implements IImageRenderer.Render
-            Dim reportItem As Object = layoutArea.ReportItem
+            Dim reportItem As IReportItem = layoutArea.ReportItem
 
-            Dim customData As Object = (CType(reportItem, ICustomReportItem)).CustomData
+            Dim customData As CustomData = (CType(reportItem, ICustomReportItem)).CustomData
             If customData Is Nothing Then
                 Return New ImageInfo()
             End If
@@ -47,7 +49,7 @@ Public NotInheritable Class RadarChart
                 End If
             Next
 
-            Dim bounds As Object = GetImageBounds(reportItem, layoutArea)
+            Dim bounds As RectangleF = GetImageBounds(reportItem, layoutArea)
             If dpi.IsEmpty Then
                 dpi = New SizeF(Resolution.Width, Resolution.Height)
             End If
@@ -58,7 +60,7 @@ Public NotInheritable Class RadarChart
 
             Using nonScaledImage As New Bitmap(imageSize.Width, imageSize.Height)
                 nonScaledImage.SetResolution(dpi.Width, dpi.Height)
-                Using chart As New System.Windows.Forms.DataVisualization.Charting.Chart() With {
+                Using chart As New DataVisualization.Charting.Chart() With {
                     .Dock = DockStyle.Fill,
                     .Size = imageSize
                 }
@@ -92,7 +94,7 @@ Public NotInheritable Class RadarChart
                 Throw New ArgumentNullException("dataMember")
             End If
             value = 0
-            Dim labelProperty As Object = dataMember.CustomProperties(SeriesValueName)
+            Dim labelProperty As CustomProperty = dataMember.CustomProperties(SeriesValueName)
             If labelProperty IsNot Nothing Then
                 value = Convert.ToDouble(labelProperty.Value, CultureInfo.InvariantCulture)
                 Return True
@@ -325,7 +327,7 @@ Public NotInheritable Class RadarChart
     End Property
 
     Function GetService(serviceType As Type) As Object Implements IServiceProvider.GetService
-        Dim definition As Object = TryCast(_properties.GetValue("ReportItemDefinition"), IServiceProvider)
+        Dim definition As IServiceProvider = TryCast(_properties.GetValue("ReportItemDefinition"), IServiceProvider)
         If definition IsNot Nothing Then
             Return definition.GetService(serviceType)
         End If

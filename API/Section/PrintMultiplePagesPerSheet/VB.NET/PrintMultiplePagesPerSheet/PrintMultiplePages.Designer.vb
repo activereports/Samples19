@@ -236,7 +236,7 @@ Partial Class PrintMultiplePages
 		If Environment.Version.Major < 6 Then
 			Dim currentDpiX As Single = Me.CreateGraphics().DpiX
 			Dim scalingFactor As Single = currentDpiX / 96
-			Me.splitContainer1.SplitterDistance = (scalingFactor * Me.splitContainer1.SplitterDistance)
+			Me.splitContainer1.SplitterDistance = CInt((scalingFactor * Me.splitContainer1.SplitterDistance))
 		End If
 		Me.splitContainer1.Panel1.ResumeLayout(False)
 		Me.splitContainer1.Panel1.PerformLayout()
@@ -246,7 +246,7 @@ Partial Class PrintMultiplePages
 		If Environment.Version.Major < 6 Then
 			Dim currentDpiX As Single = Me.CreateGraphics().DpiX
 			Dim scalingFactor As Single = currentDpiX / 96
-			Me.splitContainer2.SplitterDistance = (scalingFactor * Me.splitContainer2.SplitterDistance)
+			Me.splitContainer2.SplitterDistance = CInt((scalingFactor * Me.splitContainer2.SplitterDistance))
 		End If
 		Me.splitContainer2.Panel1.ResumeLayout(False)
 		Me.splitContainer2.Panel1.PerformLayout()

@@ -17,6 +17,7 @@
     <PlatformName>windows</PlatformName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>MSB3277</NoWarn>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>

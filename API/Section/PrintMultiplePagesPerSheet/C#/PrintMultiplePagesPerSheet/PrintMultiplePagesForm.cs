@@ -32,6 +32,9 @@ namespace ActiveReports.Samples.PrintMultiplePagesPerSheet
 		{
 			// Required for Windows Form Designer support
 			InitializeComponent();
+			// Required for print progress dialog
+			if (!(_printDocument.PrintController is PrintControllerWithStatusDialog))
+				_printDocument.PrintController = new PrintControllerWithStatusDialog(_printDocument.PrintController);
 		}
 
 		/// <summary>
@@ -164,6 +167,9 @@ namespace ActiveReports.Samples.PrintMultiplePagesPerSheet
 				_currentNumberOfPagesPrinted = 0;
 				_numberOfPagesToPrint = _pageCount / _numberOfPagesPerPrinterPage;
 				_numberOfPagesToPrint += (_pageCount % _numberOfPagesPerPrinterPage) > 0 ? 1 : 0;
+				
+				// Print
+				_printDocument.DocumentName = _numberOfPagesToPrint.ToString();
 				_printDocument.Print();
 			}
 		}

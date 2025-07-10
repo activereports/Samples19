@@ -11,6 +11,7 @@ Imports GrapeCity.Enterprise.Data.Expressions
 Imports GrapeCity.ActiveReports.PageReportModel
 Imports GrapeCity.ActiveReports.Design.DdrDesigner.Designers
 Imports GrapeCity.ActiveReports.Design.DdrDesigner.Behavior
+Imports Chart = System.Windows.Forms.DataVisualization.Charting.Chart
 Imports Cursor = System.Windows.Forms.Cursor
 Imports GrapeCity.ActiveReports
 
@@ -59,9 +60,9 @@ Public NotInheritable Class RadarDesigner
 
     Public Property DataSetName() As String
         Get
-            Dim customProperty As Object = ReportItem.CustomProperties("DataSetName")
+            Dim customProperty As CustomPropertyDefinition = ReportItem.CustomProperties("DataSetName")
             If customProperty IsNot Nothing Then
-                Dim expValue As Object = customProperty.Value
+                Dim expValue As ExpressionInfo = customProperty.Value
                 If expValue.IsConstant Then
                     Return expValue.ToString()
                 End If
@@ -69,7 +70,7 @@ Public NotInheritable Class RadarDesigner
             Return String.Empty
         End Get
         Set
-            Dim customProperty As Object = ReportItem.CustomProperties("DataSetName")
+            Dim customProperty As CustomPropertyDefinition = ReportItem.CustomProperties("DataSetName")
             If customProperty IsNot Nothing Then
                 ReportItem.CustomProperties.Remove(customProperty)
             End If
@@ -90,7 +91,7 @@ Public NotInheritable Class RadarDesigner
         End Get
         Set
             ' find series value property
-            Dim grouping As Object = ReportItem.CustomData.DataRowGroupings(0)
+            Dim grouping As DataGrouping = ReportItem.CustomData.DataRowGroupings(0)
             Dim [property] = grouping.CustomProperties(SeriesValueName)
             If Value Is Nothing OrElse ExpressionInfo.FromString(String.Empty) = Value Then
                 ' default value: empty expression
@@ -117,7 +118,7 @@ Public NotInheritable Class RadarDesigner
         If service Is Nothing AndAlso (InlineAssignHelper(host, TryCast(context.Container, IDesignerHost))) IsNot Nothing Then
             service = host.GetService(serviceType)
         End If
-        Dim component As Object = TryCast(context.Instance, IComponent)
+        Dim component As IComponent = TryCast(context.Instance, IComponent)
         If service Is Nothing AndAlso component IsNot Nothing AndAlso component.Site IsNot Nothing Then
             service = component.Site.GetService(serviceType)
         End If
@@ -128,12 +129,12 @@ Public NotInheritable Class RadarDesigner
         If serviceProvider Is Nothing Then
             Return Nothing
         End If
-        Dim host As Object = If(TryCast(serviceProvider, IDesignerHost), TryCast(serviceProvider.GetService(GetType(IDesignerHost)), IDesignerHost))
+        Dim host As IDesignerHost = If(TryCast(serviceProvider, IDesignerHost), TryCast(serviceProvider.GetService(GetType(IDesignerHost)), IDesignerHost))
         If host Is Nothing Then
             Return Nothing
         End If
-        Dim reportDef As Object = TryCast(host.RootComponent, PageReport)
-        Return If(reportDef = Nothing, Nothing, reportDef.Report)
+        Dim reportDef As PageReport = TryCast(host.RootComponent, PageReport)
+        Return If(reportDef Is Nothing, Nothing, reportDef.Report)
     End Function
 
     Public Class RadarValuesConverter
@@ -143,36 +144,36 @@ Public NotInheritable Class RadarDesigner
         End Function
 
         Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As StandardValuesCollection
-            Dim stringCollection As Object = New StringCollection()
+            Dim stringCollection As StringCollection = New StringCollection()
             If context Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim host As Object = TryCast(GetServiceFromTypeDescriptorContext(GetType(IDesignerHost), context), IDesignerHost)
+            Dim host As IDesignerHost = TryCast(GetServiceFromTypeDescriptorContext(GetType(IDesignerHost), context), IDesignerHost)
             If host Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim report As Object = GetReportFromServiceProvider(host)
+            Dim report As Report = GetReportFromServiceProvider(host)
             If report Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim selectionService As Object = TryCast(GetServiceFromTypeDescriptorContext(GetType(ISelectionService), context), ISelectionService)
+            Dim selectionService As ISelectionService = TryCast(GetServiceFromTypeDescriptorContext(GetType(ISelectionService), context), ISelectionService)
             If selectionService Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim component As Object = TryCast(selectionService.PrimarySelection, IReportComponent)
+            Dim component As IReportComponent = TryCast(selectionService.PrimarySelection, IReportComponent)
             If component Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim radar As Object = TryCast(component, CustomReportItem)
+            Dim radar As CustomReportItem = TryCast(component, CustomReportItem)
             If radar Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim dataSetName As Object = radar.CustomProperties("DataSetName")
+            Dim dataSetName As CustomPropertyDefinition = radar.CustomProperties("DataSetName")
             If dataSetName Is Nothing OrElse String.IsNullOrEmpty(dataSetName.Value) Then
                 Return New StandardValuesCollection(stringCollection)
             End If
             For Each dataSet As DataSet In report.DataSets
-                If dataSet.Name = dataSetName.Value Then
+                If dataSet.Name = dataSetName.Value.Expression Then
                     For Each field As Field In dataSet.Fields
                         stringCollection.Add(ExpressionInfo.FromString(String.Format(If(CodeGenerator.IsValidLanguageIndependentIdentifier(field.Name), "=Fields!{0}.Value", "=Fields.Item(""{0}"").Value"), field.Name)))
                     Next
@@ -203,15 +204,15 @@ Public NotInheritable Class RadarDesigner
         End Function
 
         Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As StandardValuesCollection
-            Dim stringCollection As Object = New StringCollection()
+            Dim stringCollection As StringCollection = New StringCollection()
             If context Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim host As Object = TryCast(GetServiceFromTypeDescriptorContext(GetType(IDesignerHost), context), IDesignerHost)
+            Dim host As IDesignerHost = TryCast(GetServiceFromTypeDescriptorContext(GetType(IDesignerHost), context), IDesignerHost)
             If host Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
-            Dim report As Object = GetReportFromServiceProvider(host)
+            Dim report As Report = GetReportFromServiceProvider(host)
             If report Is Nothing Then
                 Return New StandardValuesCollection(stringCollection)
             End If
@@ -253,19 +254,19 @@ Public NotInheritable Class RadarDesigner
             End If
 
             pe.Graphics.FillRectangle(BackgroundBrush, Bounds)
-            Using nonScaledImage As Object = New Bitmap(Bounds.Width, Bounds.Height)
+            Using nonScaledImage As Bitmap = New Bitmap(Bounds.Width, Bounds.Height)
                 nonScaledImage.SetResolution(pe.Graphics.DpiX, pe.Graphics.DpiY)
-                Using chart = New System.Windows.Forms.DataVisualization.Charting.Chart() With {
+                Using chart = New Chart() With {
                     .Dock = DockStyle.Fill,
                     .Size = Bounds.Size
                 }
-                    Dim chartArea As Object = New ChartArea("Main")
+                    Dim chartArea As ChartArea = New ChartArea("Main")
                     chart.ChartAreas.Add(chartArea)
 
                     ' Create series and add it to the chart
-                    Dim seriesColumns As Object = New Series("RandomColumns")
+                    Dim seriesColumns As Series = New Series("RandomColumns")
                     ' Add 10 random values to the series
-                    Dim random As Object = New Random(0)
+                    Dim random As Random = New Random(0)
                     Dim i As Integer = 0
                     While i < 10
                         seriesColumns.Points.Add(random.[Next](100))
@@ -301,19 +302,19 @@ Public NotInheritable Class RadarDesigner
                 If item Is Nothing OrElse item.Site Is Nothing Then
                     Return True
                 End If
-                Dim host As Object = TryCast(item.Site.GetService(GetType(IDesignerHost)), IDesignerHost)
+                Dim host As IDesignerHost = TryCast(item.Site.GetService(GetType(IDesignerHost)), IDesignerHost)
                 If host Is Nothing Then
                     Return True
                 End If
-                Dim reportDef As Object = TryCast(host.RootComponent, PageReport)
+                Dim reportDef As PageReport = TryCast(host.RootComponent, PageReport)
                 If reportDef Is Nothing Then
                     Return True
                 End If
-                Dim reportDesigner As Object = TryCast(host.GetDesigner(reportDef.Report), ReportDesigner)
+                Dim reportDesigner As ReportDesigner = TryCast(host.GetDesigner(reportDef.Report), ReportDesigner)
                 If reportDesigner Is Nothing Then
                     Return True
                 End If
-                Dim activeLayer As Object = reportDesigner.ActiveLayer
+                Dim activeLayer As String = reportDesigner.ActiveLayer
                 Return String.Equals(activeLayer, item.LayerName, StringComparison.InvariantCultureIgnoreCase)
             End Function
         End Class

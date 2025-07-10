@@ -26,6 +26,9 @@ Public Class PrintMultiplePages
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+        If Not (TypeOf PrintDocument.PrintController Is PrintControllerWithStatusDialog) Then
+            PrintDocument.PrintController = New PrintControllerWithStatusDialog(PrintDocument.PrintController)
+        End If
     End Sub
 
     'Form overrides dispose to clean up the component list.
@@ -84,6 +87,8 @@ Public Class PrintMultiplePages
             _currentNumberOfPagesPrinted = 0
             _numberOfPagesToPrint = CInt(_pageCount / _numberOfPagesPerPrinterPage)
             _numberOfPagesToPrint += CInt(IIf(_pageCount Mod _numberOfPagesPerPrinterPage > 0, 1, 0))
+
+            PrintDocument.DocumentName = _numberOfPagesToPrint.ToString()
             PrintDocument.Print()
         End If
     End Sub

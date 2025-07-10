@@ -8,12 +8,15 @@ Imports System.IO
 Imports System.Collections.Specialized
 Imports System.Text
 Imports GrapeCity.ActiveReports
+Imports GrapeCity.ActiveReports.Export.Pdf.Page
 
 Partial Public NotInheritable Class MainForm
     Inherits Form
     Private Const ReportsPath As String = "..\..\..\..\..\..\Reports\"
 
     Private _startTimeout As DateTime = DateTime.Now
+    Private ReadOnly _arPdf As IRenderingExtension = New PdfRenderingExtension()
+    Private ReadOnly _sharpPdf As IRenderingExtension = New PdfSharpRenderingExtension()
 
     Public Sub New()
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)
@@ -106,13 +109,13 @@ Partial Public NotInheritable Class MainForm
     End Sub
 
     Private Sub SetPropertyGrid()
-        If Not RadioButton1.Checked And Not RadioButton2.Checked Then
+        If Not RadioButton1.Checked AndAlso Not RadioButton2.Checked Then
             Return
         End If
 
-        Dim export = CType(If(RadioButton1.Checked, RadioButton1, RadioButton2), RenderingExtensionWrapper)
-        If ((RadioButton1.Checked Or RadioButton2.Checked) AndAlso Not IsNothing(reports.SelectedItem)) Then
-            propertyGrid.SelectedObject = export.GetSupportedSettings(If(Not IsNothing(reports.SelectedItem), IsFpl(CType(reports.SelectedItem, String)), False))
+        Dim export = If(RadioButton1.Checked, _arPdf, _sharpPdf)
+        If export IsNot Nothing AndAlso reports.SelectedItem IsNot Nothing Then
+            propertyGrid.SelectedObject = DirectCast(export, IConfigurable).GetSupportedSettings(If(reports.SelectedItem IsNot Nothing, IsFpl(DirectCast(reports.SelectedItem, String)), False))
         End If
     End Sub
 
@@ -124,35 +127,31 @@ Partial Public NotInheritable Class MainForm
     End Sub
 
     Private Sub RenderPdf(streams As StreamProvider, postAction As Action(Of StreamProvider))
-        Dim reportPath = Path.Combine(ReportsPath, CType(reports.SelectedItem, String))
-        Dim pdfSettings = CType(propertyGrid.SelectedObject, ISettings)
-        Dim export = CType(If(RadioButton1.Checked, RadioButton1, RadioButton2), RenderingExtensionWrapper)
+        Dim reportPath As String = Path.Combine(ReportsPath, DirectCast(reports.SelectedItem, String))
+        Dim pdfSettings As ISettings = DirectCast(propertyGrid.SelectedObject, ISettings)
+        Dim export = If(RadioButton1.Checked, _arPdf, _sharpPdf)
 
         Cursor = Cursors.WaitCursor
         Enabled = False
-        Dim thread As New Thread(Sub(_s)
-                                     Try
-                                         Using report As New PageReport(New FileInfo(reportPath))
-                                             export.Render(report.Document, streams, pdfSettings.GetSettings())
-                                         End Using
-                                         postAction(streams)
-                                     Catch ex As Exception
-                                         BeginInvoke(New MethodInvoker(Sub()
-                                                                           MessageBox.Show(Me, String.Format(My.Resources.ErrorMessage, ex.Message), Text, MessageBoxButtons.OK, MessageBoxIcon.[Error])
 
-                                                                       End Sub))
-                                     Finally
-                                         BeginInvoke(New MethodInvoker(Sub()
-                                                                           Enabled = True
+        Dim thread As New Thread(
+        Sub()
+            Try
+                Using report As New PageReport(New FileInfo(reportPath))
+                    report.Document.Render(export, streams, pdfSettings.GetSettings())
+                End Using
+                postAction(streams)
+            Catch ex As Exception
+                BeginInvoke(New MethodInvoker(
+                    Sub()
+                        MessageBox.Show(Me, String.Format(My.Resources.ErrorMessage, ex.Message), Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Sub))
+            Finally
+                BeginInvoke(New MethodInvoker(Sub() Enabled = True))
+                BeginInvoke(New MethodInvoker(Sub() Cursor = Cursors.Default))
+            End Try
+        End Sub)
 
-                                                                       End Sub))
-                                         BeginInvoke(New MethodInvoker(Sub()
-                                                                           Cursor = Cursors.[Default]
-
-                                                                       End Sub))
-                                     End Try
-
-                                 End Sub)
         thread.Start()
     End Sub
 

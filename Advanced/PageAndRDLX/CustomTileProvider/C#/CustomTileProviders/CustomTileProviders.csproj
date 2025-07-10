@@ -17,13 +17,14 @@
     <PlatformName>windows</PlatformName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>MSB3277</NoWarn>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MESCIUS.ActiveReports">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Http">
       <Version>6.0.0</Version>

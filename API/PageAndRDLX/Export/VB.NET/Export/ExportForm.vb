@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Text
 Imports GrapeCity.ActiveReports
 Imports GrapeCity.ActiveReports.Extensibility.Rendering
+Imports GrapeCity.ActiveReports.Rendering.IO
 
 Public Class ExportForm
 
@@ -14,8 +15,8 @@ Public Class ExportForm
 	End Sub
 
 	Private Sub FillReportsNames()
-		Dim directoryInfo As Object = New DirectoryInfo(_path)
-		For Each file As Object In directoryInfo.GetFiles()
+		Dim directoryInfo As DirectoryInfo = New DirectoryInfo(_path)
+		For Each file As FileInfo In directoryInfo.GetFiles()
 			reportsNames.Items.Add(file.Name)
 		Next
 	End Sub
@@ -89,8 +90,8 @@ Public Class ExportForm
 			Return
 		End If
 
-		Dim outputDirectory As Object = New DirectoryInfo(Path.GetDirectoryName(saveFileDialog.FileName))
-		Dim outputProvider As Object = New Rendering.IO.FileStreamProvider(outputDirectory, Path.GetFileNameWithoutExtension(saveFileDialog.FileName))
+		Dim outputDirectory As DirectoryInfo = New DirectoryInfo(Path.GetDirectoryName(saveFileDialog.FileName))
+		Dim outputProvider As FileStreamProvider = New FileStreamProvider(outputDirectory, Path.GetFileNameWithoutExtension(saveFileDialog.FileName))
 
 		outputProvider.OverwriteOutputFile = True
 

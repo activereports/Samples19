@@ -18,6 +18,7 @@
     <PlatformName>windows</PlatformName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>MSB3277</NoWarn>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -65,27 +66,27 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DS.Documents.Imaging" Version="8.0.4" />
-    <PackageReference Include="MESCIUS.ActiveReports.Export.Rdf" Version="19.0.1" />
+    <PackageReference Include="MESCIUS.ActiveReports.Export.Rdf" Version="19.1.1" />
     <PackageReference Include="MESCIUS.ActiveReports.Export.Excel">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Html">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Image">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Pdf">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Word">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Xml">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Viewer.Win">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.118</Version>

@@ -23,7 +23,7 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <MyType>WindowsForms</MyType>
-    <NoWarn>NU1701</NoWarn>
+    <NoWarn>NU1701;MSB3277</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -78,30 +78,30 @@
   <ItemGroup>
     <PackageReference Include="DS.Documents.Imaging" Version="8.0.4" />
     <PackageReference Include="DS.Documents.Barcode" Version="8.0.4" />
-    <PackageReference Include="MESCIUS.ActiveReports.Export.Rdf" Version="19.0.1" />
+    <PackageReference Include="MESCIUS.ActiveReports.Export.Rdf" Version="19.1.1" />
     <PackageReference Include="MESCIUS.ActiveReports.Export.Excel">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Html">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Image">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Pdf">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Word">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Export.Xml">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Design.Win">
-      <Version>19.0.1</Version>
+      <Version>19.1.1</Version>
     </PackageReference>
     <PackageReference Include="MESCIUS.ActiveReports.Core.DataProviders.Excel">
-      <Version>2.0.1</Version>
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.118</Version>
