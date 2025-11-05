@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects" DefaultTargets="Build">
   <PropertyGroup>
-    <MSBuildFileVersion>17.12.6.51805</MSBuildFileVersion>
-    <MSBuildSemanticVersion>17.12.6+db5f6012c</MSBuildSemanticVersion>
+    <MSBuildFileVersion>17.14.23.42201</MSBuildFileVersion>
+    <MSBuildSemanticVersion>17.14.23+b0019275e</MSBuildSemanticVersion>
     <MSBuildExtensionsPath32>C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild</MSBuildExtensionsPath32>
     <MSBuildExtensionsPath>C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild</MSBuildExtensionsPath>
     <MSBuildToolsPath32>C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin</MSBuildToolsPath32>
@@ -60,7 +60,8 @@
     <GetReferenceNearestTargetFrameworkTaskSupportsTargetPlatformParameter>true</GetReferenceNearestTargetFrameworkTaskSupportsTargetPlatformParameter>
     <NuGetAudit>true</NuGetAudit>
     <NuGetAuditLevel>low</NuGetAuditLevel>
-    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+    <RestoreEnablePackagePruning>false</RestoreEnablePackagePruning>
     <_GenerateRestoreGraphProjectEntryInputProperties>
       ExcludeRestorePackageImports=true;
       _RestoreSolutionFileUsed=true;
@@ -155,6 +156,9 @@
     </RemoveDuplicates>
     <RestoreTask EmbedFilesInBinlog="$(RestoreEmbedFilesInBinlog)" RestoreNoHttpCache="$(RestoreNoHttpCache)" RestoreRecursive="$(RestoreRecursive)" RestoreIgnoreFailedSources="$(RestoreIgnoreFailedSources)" RestoreDisableParallel="$(RestoreDisableParallel)" RestoreForce="$(RestoreForce)" HideWarningsAndErrors="$(HideWarningsAndErrors)" Interactive="$(NuGetInteractive)" RestoreNoCache="$(RestoreNoCache)" RestoreGraphItems="@(_RestoreGraphEntryFiltered)" RestoreForceEvaluate="$(RestoreForceEvaluate)" RestorePackagesConfig="$(RestorePackagesConfig)">
       <Output TaskParameter="EmbedInBinlog" ItemName="EmbedInBinlog" />
+      <Output TaskParameter="ProjectsRestored" ItemName="RestoreProjectCount" />
+      <Output TaskParameter="ProjectsAlreadyUpToDate" ItemName="RestoreSkippedCount" />
+      <Output TaskParameter="ProjectsAudited" ItemName="RestoreProjectsAuditedCount" />
     </RestoreTask>
   </Target>
   <Target Name="GenerateRestoreGraphFile" DependsOnTargets="_GenerateRestoreGraph">
@@ -185,7 +189,12 @@
       <Output TaskParameter="DeduplicatedItems" ItemName="DeduplicatedNuGetAuditSuppressions" />
     </CheckForDuplicateNuGetItemsTask>
   </Target>
-  <Target Name="_CollectRestoreInputs" DependsOnTargets="CollectPackageReferences;CollectPackageDownloads;CollectFrameworkReferences;CollectCentralPackageVersions;CollectNuGetAuditSuppressions" />
+  <Target Name="CollectPrunePackageReferences" Returns="@(PrunePackageReference)">
+    <CheckForDuplicateNuGetItemsTask Condition="'$(DisableCheckingDuplicateNuGetItems)' != 'true' " ContinueOnError="$(CollectPrunePackageReferencesContinueOnError)" NoWarn="$(NoWarn)" MSBuildProjectFullPath="$(MSBuildProjectFullPath)" WarningsNotAsErrors="$(WarningsNotAsErrors)" ItemName="PrunePackageReference" LogCode="NU1509" Items="@(PrunePackageReference)" TreatWarningsAsErrors="$(TreatWarningsAsErrors)" WarningsAsErrors="$(WarningsAsErrors)">
+      <Output TaskParameter="DeduplicatedItems" ItemName="DeduplicatedPrunePackageReference" />
+    </CheckForDuplicateNuGetItemsTask>
+  </Target>
+  <Target Name="_CollectRestoreInputs" DependsOnTargets="CollectPackageReferences;CollectPackageDownloads;CollectFrameworkReferences;CollectCentralPackageVersions;CollectNuGetAuditSuppressions;CollectPrunePackageReferences" />
   <Target Name="_LoadRestoreGraphEntryPoints" Returns="@(RestoreGraphProjectInputItems)">
     <GetRestoreSolutionProjectsTask Condition=" $(MSBuildProjectFullPath.EndsWith('.metaproj')) == 'true' AND @(RestoreGraphProjectInputItems) == '' " SolutionFilePath="$(MSBuildProjectFullPath)" ProjectReferences="@(ProjectReference)">
       <Output TaskParameter="OutputProjectReferences" ItemName="RestoreGraphProjectInputItems" />
@@ -288,6 +297,9 @@
     <GetRestoreNuGetAuditSuppressionsTask TargetFrameworks="$(TargetFramework)" ProjectUniqueName="$(MSBuildProjectFullPath)" NuGetAuditSuppressions="@(NuGetAuditSuppress)">
       <Output TaskParameter="RestoreGraphItems" ItemName="_RestoreGraphEntry" />
     </GetRestoreNuGetAuditSuppressionsTask>
+    <GetRestorePrunePackageReferencesTask PrunePackageReferences="@(PrunePackageReference)" TargetFrameworks="$(TargetFramework)" ProjectUniqueName="$(MSBuildProjectFullPath)">
+      <Output TaskParameter="RestoreGraphItems" ItemName="_RestoreGraphEntry" />
+    </GetRestorePrunePackageReferencesTask>
   </Target>
   <Target Name="_GenerateRestoreProjectPathItemsCurrentProject" Condition=" '$(TargetFrameworks)' == '' " DependsOnTargets="_GenerateRestoreProjectPathItemsPerFramework" Returns="@(_RestoreProjectPathItems)" />
   <Target Name="_GenerateRestoreProjectPathItemsPerFramework" Returns="@(_RestoreProjectPathItems)">
