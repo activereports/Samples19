@@ -99,7 +99,7 @@ Partial Friend Class ViewerForm
 		Dim attr As LicenseProviderAttribute = CType(attributes(0), LicenseProviderAttribute)
 		Dim provider As Object = (CType(Activator.CreateInstance(attr.LicenseProvider), LicenseProvider))
 
-		Dim methodInfo As Object = provider.[GetType]().GetMethod(showAboutBoxMethodName, BindingFlags.NonPublic Or BindingFlags.Instance)
+		Dim methodInfo As MethodInfo = provider.[GetType]().GetMethod(showAboutBoxMethodName, BindingFlags.NonPublic Or BindingFlags.Instance)
 
 		If methodInfo IsNot Nothing Then
 			methodInfo.Invoke(provider, New Object() {viewer.[GetType]()})

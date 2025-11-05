@@ -12,7 +12,7 @@ namespace ActiveReports.Viewer.Helper
 		''' Determines if the specified report is FPL report
 		''' </summary>
 		Public Shared Function DetermineReportType(fileName As FileInfo) As ExportForm.ReportType
-			Dim extension As Object = Path.GetExtension(fileName.FullName).ToLowerInvariant()
+			Dim extension As String = Path.GetExtension(fileName.FullName)?.ToLowerInvariant()
 			If extension = ".json" OrElse extension = ".bson" Then
 				Return ExportForm.ReportType.PageCpl
 			End If
